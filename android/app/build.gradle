@@ -8,7 +8,6 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -29,6 +28,21 @@ android {
 
     lintOptions {
         disable 'InvalidPackage'
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'xintian'
+            keyPassword '123456'
+            storeFile file('../keystore/XTPublicKeyStore.jks')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'xintian'
+            keyPassword '123456'
+            storeFile file('../keystore/XTPublicKeyStore.jks')
+            storePassword '123456'
+        }
     }
 
     defaultConfig {
