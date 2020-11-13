@@ -2,7 +2,9 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ninghao/ui/HelloWordPage.dart';
 import 'package:flutter_ninghao/ui/page/ColumnPage.dart';
+import 'package:flutter_ninghao/ui/page/LoggerPage.dart';
 import 'package:flutter_ninghao/ui/page/RowPage.dart';
+import 'package:flutter_ninghao/ui/page/StreamPage.dart';
 import 'package:flutter_ninghao/ui/page/TextButtonPage.dart';
 import 'package:flutter_ninghao/ui/page/WrapPage.dart';
 
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: WrapPage(),
+      home: StreamPage(),
     );
   }
 }
