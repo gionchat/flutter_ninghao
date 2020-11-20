@@ -52,6 +52,7 @@ class _DialogState extends State<DialogPage> {
                         },
                       ),
                     ],
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   );
                 });
           },

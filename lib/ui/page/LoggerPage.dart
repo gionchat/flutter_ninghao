@@ -18,7 +18,7 @@ class LoggerPage extends StatefulWidget {
 }
 
 class _LoggerState extends State<LoggerPage> {
-
+  static final String TAG = "LoggerPage";
   var log = Logger();
 
   @override

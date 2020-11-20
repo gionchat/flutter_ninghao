@@ -15,6 +15,7 @@ import 'ThemePage.dart';
 
 
 class MainPage extends StatelessWidget {
+  static final String TAG = "MainPage";
   final SystemUiOverlayStyle _style = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
   @override
   Widget build(BuildContext context) {
