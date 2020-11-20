@@ -11,6 +11,7 @@ import 'DialogPage.dart';
 import 'DrawerPage.dart';
 import 'LoginPage.dart';
 import 'SharedPreferencesDemo.dart';
+import 'ThemePage.dart';
 
 
 class MainPage extends StatelessWidget {
@@ -106,6 +107,15 @@ class _MainState extends State<StatefulWidget> {
                   Navigator.push(
                     context,
                     new MaterialPageRoute(builder: (context) => new SharedPreferencesDemo()),
+                  );
+                }),
+
+            RaisedButton(
+                child: Text("DialogPage"),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    new MaterialPageRoute(builder: (context) => new DialogPage()),
                   );
                 }),
 
