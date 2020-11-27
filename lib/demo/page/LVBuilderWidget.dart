@@ -9,7 +9,6 @@ import 'package:flutter_ninghao/demo/model/Post.dart';
  * Description:
  */
 
-
 class LVBuilderWidget extends StatelessWidget {
   Widget homeListViewItem(BuildContext context, int index) {
     return Container(
@@ -17,12 +16,27 @@ class LVBuilderWidget extends StatelessWidget {
         margin: EdgeInsets.all(8),
         child: Column(
           children: [
-            Image.network(posts[index].imgUrl),
-            SizedBox(height: 16,),
+            GestureDetector(
+              child: Image.network(posts[index].imgUrl),
+              onTap: () {
+                print("post ${posts[index].imgUrl}");
+                Navigator.pushNamed(context, "/PostShowPage");
+              },
+            ),
+            SizedBox(
+              height: 16,
+            ),
             Text(posts[index].title),
-            SizedBox(height: 16,),
-            Text(posts[index].author,style: TextStyle(fontWeight: FontWeight.bold),),
-            SizedBox(height: 16,),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              posts[index].author,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 16,
+            ),
           ],
         ));
   }
@@ -30,6 +44,8 @@ class LVBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: posts.length, itemBuilder: homeListViewItem);
+        physics: BouncingScrollPhysics(),
+        itemCount: posts.length,
+        itemBuilder: homeListViewItem);
   }
 }
