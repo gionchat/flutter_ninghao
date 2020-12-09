@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ninghao/bean/Login.dart';
+import 'dart:convert';
 
 void main() => runApp(MyApp());
 
@@ -59,7 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
         data: params);
     String originData = response.data.toString();
     String data = originData.substring(originData.indexOf(">{") + 1,originData.indexOf("}<") + 1);
-    print("Http post 返回webservice接口数据: " + data);
+    try {
+      Map<String, dynamic> dataJson = jsonDecode(data);
+      Login login = Login.fromJson(dataJson);
+      print("jeek login.result ${login.result}");
+      print("jeek login.msg ${login.msg}");
+      print("jeek login.data ${login.msg}");
+      print("jeek login.data.userName ${login.data.userName}");
+      print("jeek login.data.headImgPath ${login.data.headImgPath}");
+      print("Http post 返回webservice接口数据: " + data);
+    }catch(exception){
+      print("jeek $exception");
+    }
   }
 
   void getHttp() async {
