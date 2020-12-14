@@ -36,7 +36,7 @@ class WebServiceLite{
         data: webserviceParams);
     String originData = response.data.toString();
     String data = originData.substring(originData.indexOf(">{") + 1,originData.indexOf("}<") + 1);
-    LogUtils.i(TAG, "data => $data");
+    LogUtils.i(TAG, "method: ${method} | data => $data");
     return data;
   }
 
