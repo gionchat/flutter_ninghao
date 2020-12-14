@@ -41,7 +41,7 @@ class WebServiceLite{
   }
 
   static Future<String> requset(String method,Map<String,dynamic> params) async{
-    return requsetURL(Constants.BASE_URL,method,params);
+    return await requsetURL(Constants.BASE_URL,method,params);
   }
 
 }
