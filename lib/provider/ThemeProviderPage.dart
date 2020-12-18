@@ -27,7 +27,8 @@ class ThemeProviderPage extends StatelessWidget {
         builder: (context,themeProvider,_){
           return MaterialApp(
             home: ThemeProviderPageStatefulWidget(),
-            theme: themeProvider.currentTheme);
+            theme: themeProvider.currentTheme,
+          themeMode: ThemeMode.light,);
         },
       ),
     );

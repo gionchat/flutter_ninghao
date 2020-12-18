@@ -10,7 +10,6 @@ import 'package:dio/dio.dart';
 class HttpLite{
 
   static Dio _dio;
-  static HttpLite httpLite = HttpLite();
 
   static Dio createDio() {
     Dio dio = Dio(BaseOptions(
@@ -35,6 +34,27 @@ class HttpLite{
       _dio = createDio();
     }
     return _dio.post(url,queryParameters: params);
+  }
+
+  static Future<Response> put(String url,Map<String,dynamic> params){
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    return _dio.put(url,queryParameters: params);
+  }
+
+  static Future<Response> delete(String url,Map<String,dynamic> params){
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    return _dio.delete(url,queryParameters: params);
+  }
+
+  static Future<Response> patch(String url,Map<String,dynamic> params){
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    return _dio.patch(url,queryParameters: params);
   }
 
 }

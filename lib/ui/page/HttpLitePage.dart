@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ninghao/base/http/HttpLite.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
+import 'package:flutter_ninghao/bean/UserBean.dart';
+import 'dart:convert';
 
 void main() => runApp(HttpLitePage());
 final String TAG = "HttpLitePage";
@@ -45,14 +47,18 @@ class _HttpLitePageState extends State<StatefulWidget> {
       appBar: AppBar(
         title: Text("HttpLitePage"),
       ),
-      body: Center(
+        body: Center(
         child: OutlineButton(
           child: Text("Http Lite"),
           onPressed: () {
             LogUtils.i("TAG", "Log");
             //HttpLite.getInstance().
-            HttpLite.get("https://www.baidu.com/", {})
-                .then((value) => LogUtils.i(TAG, value));
+            HttpLite.get("http://jsonplaceholder.typicode.com/posts/1", {})
+                .then((value) {
+                  LogUtils.i(TAG, value);
+                  UserBean userBean = UserBean.fromJson(jsonDecode(value.toString()));
+                  LogUtils.i(TAG, "userBean.title ${userBean.title}");
+            });
           },
         ),
       ),
