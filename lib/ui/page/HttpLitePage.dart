@@ -55,9 +55,10 @@ class _HttpLitePageState extends State<StatefulWidget> {
             //HttpLite.getInstance().
             HttpLite.get("http://jsonplaceholder.typicode.com/posts/1", {})
                 .then((value) {
-                  LogUtils.i(TAG, value);
-                  UserBean userBean = UserBean.fromJson(jsonDecode(value.toString()));
-                  LogUtils.i(TAG, "userBean.title ${userBean.title}");
+                  LogUtils.i(TAG, "jeek value => $value");
+                  UserBean userBean = UserBean.fromJson(value);
+                  LogUtils.i(TAG, "jeek userBean.id ${userBean.id}");
+                  LogUtils.i(TAG, "jeek userBean.title ${userBean.title}");
             });
           },
         ),

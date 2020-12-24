@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 /**
@@ -21,40 +23,49 @@ class HttpLite{
     return dio;
   }
 
-  static Future<Response> get(String url,Map<String,dynamic> params){
+  static Future<Map<String,dynamic>> get(String url,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
-    return _dio.get(url,queryParameters: params);
+    Response<String> respnse = await _dio.get(url,queryParameters: params);
+    return jsonDecode(respnse.data);
 
   }
 
-  static Future<Response> post(String url,Map<String,dynamic> params){
+  static Future<Map<String,dynamic>> post(String url,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
-    return _dio.post(url,queryParameters: params);
+    Response<String> respnse = await _dio.post(url,queryParameters: params);
+    return jsonDecode(respnse.data);
+
   }
 
-  static Future<Response> put(String url,Map<String,dynamic> params){
+  static Future<Map<String,dynamic>> put(String url,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
-    return _dio.put(url,queryParameters: params);
+    Response<String> respnse = await _dio.put(url,queryParameters: params);
+    return jsonDecode(respnse.data);
+
   }
 
-  static Future<Response> delete(String url,Map<String,dynamic> params){
+  static Future<Map<String,dynamic>> delete(String url,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
-    return _dio.delete(url,queryParameters: params);
+    Response<String> respnse = await _dio.delete(url,queryParameters: params);
+    return jsonDecode(respnse.data);
+
   }
 
-  static Future<Response> patch(String url,Map<String,dynamic> params){
+  static Future<Map<String,dynamic>> patch(String url,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
-    return _dio.patch(url,queryParameters: params);
+    Response<String> respnse = await _dio.patch(url,queryParameters: params);
+    return jsonDecode(respnse.data);
+
   }
 
 }

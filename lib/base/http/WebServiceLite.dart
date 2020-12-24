@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
 import 'package:flutter_ninghao/contants/Constants.dart';
@@ -23,7 +25,7 @@ class WebServiceLite{
     return dio;
   }
 
-  static Future<String> requsetURL(String url,String method,Map<String,dynamic> params) async{
+  static Future<Map<String,dynamic>> requsetURL(String url,String method,Map<String,dynamic> params) async{
     if(_dio == null) {
       _dio = createDio();
     }
@@ -37,10 +39,10 @@ class WebServiceLite{
     String originData = response.data.toString();
     String data = originData.substring(originData.indexOf(">{") + 1,originData.indexOf("}<") + 1);
     LogUtils.i(TAG, "method: ${method} | data => $data");
-    return data;
+    return jsonDecode(data);
   }
 
-  static Future<String> requset(String method,Map<String,dynamic> params) async{
+  static Future<Map<String,dynamic>> requset(String method,Map<String,dynamic> params) async{
     return await requsetURL(Constants.BASE_URL,method,params);
   }
 
