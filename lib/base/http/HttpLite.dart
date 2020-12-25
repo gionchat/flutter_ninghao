@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /**
  * Copyright (C), 2015-2020, suntront
@@ -24,6 +26,11 @@ class HttpLite{
   }
 
   static Future<Map<String,dynamic>> get(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }
@@ -33,6 +40,11 @@ class HttpLite{
   }
 
   static Future<Map<String,dynamic>> post(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }
@@ -42,6 +54,11 @@ class HttpLite{
   }
 
   static Future<Map<String,dynamic>> put(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }
@@ -51,6 +68,11 @@ class HttpLite{
   }
 
   static Future<Map<String,dynamic>> delete(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }
@@ -60,6 +82,11 @@ class HttpLite{
   }
 
   static Future<Map<String,dynamic>> patch(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }

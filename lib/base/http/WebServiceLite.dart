@@ -1,8 +1,10 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
 import 'package:flutter_ninghao/contants/Constants.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /**
  * Copyright (C), 2015-2020, suntront
@@ -26,6 +28,11 @@ class WebServiceLite{
   }
 
   static Future<Map<String,dynamic>> requsetURL(String url,String method,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
     if(_dio == null) {
       _dio = createDio();
     }

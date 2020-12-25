@@ -40,6 +40,9 @@ class HttpLitePageStatefulWidget extends StatefulWidget {
 }
 
 class _HttpLitePageState extends State<StatefulWidget> {
+
+  String data = "HttpLite";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -48,20 +51,31 @@ class _HttpLitePageState extends State<StatefulWidget> {
         title: Text("HttpLitePage"),
       ),
         body: Center(
-        child: OutlineButton(
-          child: Text("Http Lite"),
-          onPressed: () {
-            LogUtils.i("TAG", "Log");
-            //HttpLite.getInstance().
-            HttpLite.get("http://jsonplaceholder.typicode.com/posts/1", {})
-                .then((value) {
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("$data"),
+            OutlineButton(
+              child: Text("HttpLite"),
+              onPressed: () {
+                LogUtils.i("TAG", "Log");
+                //HttpLite.getInstance().
+                HttpLite.get("http://jsonplaceholder.typicode.com/posts/1", {})
+                    .then((value) {
                   LogUtils.i(TAG, "jeek value => $value");
-                  UserBean userBean = UserBean.fromJson(value);
-                  LogUtils.i(TAG, "jeek userBean.id ${userBean.id}");
-                  LogUtils.i(TAG, "jeek userBean.title ${userBean.title}");
-            });
-          },
-        ),
+                  if(value != null) {
+                    setState(() {
+                      data = value.toString();
+                    });
+                    UserBean userBean = UserBean.fromJson(value);
+                    LogUtils.i(TAG, "jeek userBean.id ${userBean.id}");
+                    LogUtils.i(TAG, "jeek userBean.title ${userBean.title}");
+                  }
+                });
+              },
+            ),
+          ],
+        )
       ),
     );
   }
