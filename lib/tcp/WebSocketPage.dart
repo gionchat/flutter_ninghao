@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:socket_io_client/socket_io_client.dart';
 
 final String TAG = "WebSocketPage";
 
@@ -51,7 +52,11 @@ class _WebSocketPageState extends State<StatefulWidget> {
           onPressed: (){
             LogUtils.i(TAG, "jeek Tcp 发送数据测试");
             // Dart client
-            IO.Socket socket = IO.io('http://192.168.2.5:8266');
+            IO.Socket socket = IO.io('http://192.168.2.5:8266',OptionBuilder()
+                .setTransports(['websocket']) // for Flutter or Dart VM
+                .disableAutoConnect()  // disable auto-connection
+                .setExtraHeaders({'foo': 'bar'}) // optional
+                .build());
             socket.onConnect((_) {
               print('connect');
               socket.emit('msg', 'test 123');
