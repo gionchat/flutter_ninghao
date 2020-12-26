@@ -37,6 +37,8 @@ class WebServiceLitePageStatefulWidget extends StatefulWidget {
 
 class _WebServiceLitePageState extends State<StatefulWidget> {
 
+  String response = "data";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -45,14 +47,25 @@ class _WebServiceLitePageState extends State<StatefulWidget> {
         title: Text("WebServiceLitePage"),
       ),
       body: Center(
-        child: OutlineButton(
-          child: Text("WebService Lite Test"),
-          onPressed: (){
-            LogUtils.i("TAG", "WebService Lite Test");
-            //Map<String,dynamic> params = Map<String,dynamic>();
-            WebServiceLite.requset("Login", {"password":"12345678","userId":"15324878973"}).then((value) => LogUtils.i(TAG, value));
-          },
-        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("$response"),
+            OutlineButton(
+              child: Text("WebService Lite Test"),
+              onPressed: (){
+                LogUtils.i("TAG", "WebService Lite Test");
+                //Map<String,dynamic> params = Map<String,dynamic>();
+                WebServiceLite.requset("Login", {"password":"12345678","userId":"15324878973"}).then((value){
+                  LogUtils.i(TAG, value);
+                      setState(() {
+                        response = value.toString();
+                      });
+                });
+              },
+            ),
+          ],
+        )
       ),
     );
   }
