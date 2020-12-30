@@ -9,7 +9,16 @@ import 'package:flutter_ninghao/ui/page/StreamPage.dart';
 import 'package:flutter_ninghao/ui/page/TextButtonPage.dart';
 import 'package:flutter_ninghao/ui/page/WrapPage.dart';
 
-void main() {
+import 'Application.dart';
+import 'base/utils/EncryptUtil.dart';
+
+void main() async{
+  try{
+    await Application.initSp();
+    await EncryptUtil.initEncrypt();
+  }catch(e){
+
+  }
   runApp(DevicePreview(builder: (context) => MyApp()));
 }
 

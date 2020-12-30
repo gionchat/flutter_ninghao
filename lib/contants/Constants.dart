@@ -7,6 +7,7 @@
  */
 class Constants{
 
-  static final String BASE_URL = "http://47.93.27.60:8002/TempControllerAppService.asmx";
-
+  static const String BASE_URL = "http://47.93.27.60:8002/TempControllerAppService.asmx";
+  static const String channel = "allpass.aengus.top";
+  static const String methodImportChromeData = "importChromeData";
 }
