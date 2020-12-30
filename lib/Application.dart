@@ -10,13 +10,15 @@ import 'contants/Constants.dart';
  * Date: 2020/12/14
  * Description:
  */
-class Application{
-
-  static SharedPreferences sp;
+class Application {
+  static SharedPreferences _sharedPreferences;
   static MethodChannel shareMethodChannel;
 
-  static Future<Null> initSp() async {
-    sp = await SharedPreferences.getInstance();
+  static Future<SharedPreferences> getSpUtils() async {
+    if (_sharedPreferences == null) {
+      _sharedPreferences = await SharedPreferences.getInstance();
+    }
+    return _sharedPreferences;
   }
 
   static void initChannelAndHandle() {
@@ -30,5 +32,4 @@ class Application{
       }
     });
   }
-
 }
