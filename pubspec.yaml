@@ -42,7 +42,6 @@ dependencies:
   device_info: ^1.0.0
   cached_network_image: ^2.4.1
   jpush_flutter: 0.6.1
-  socket_io_client: ^0.9.12
   connectivity: ^2.0.2
 dev_dependencies:
   flutter_test:

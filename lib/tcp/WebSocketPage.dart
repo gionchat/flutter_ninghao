@@ -57,6 +57,9 @@ class _WebSocketPageState extends State<StatefulWidget> {
             // listen to the received data event stream
             socket.listen((List<int> event) {
               print(utf8.decode(event));
+              if(utf8.decode(event).contains("ok")){
+                socket.close();
+              }
             });
             // send hello
             socket.add(utf8.encode('jeek send data from client'));
