@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 /**
  * Copyright (C), 2015-2020, suntront
  * FileName: WebSocketPage
@@ -8,9 +11,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
-
-import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:socket_io_client/socket_io_client.dart';
 
 final String TAG = "WebSocketPage";
 
@@ -49,21 +49,22 @@ class _WebSocketPageState extends State<StatefulWidget> {
       body: Center(
         child:OutlinedButton(
           child: Text("Tcp 发送数据测试"),
-          onPressed: (){
+          onPressed: () async{
             LogUtils.i(TAG, "jeek Tcp 发送数据测试");
             // Dart client
-            IO.Socket socket = IO.io('http://192.168.2.5:8266',OptionBuilder()
-                .setTransports(['websocket']) // for Flutter or Dart VM
-                .disableAutoConnect()  // disable auto-connection
-                .setExtraHeaders({'foo': 'bar'}) // optional
-                .build());
-            socket.onConnect((_) {
-              print('connect');
-              socket.emit('msg', 'test 123');
+            Socket socket = await Socket.connect('192.168.2.5', 8266);
+            print('connected');
+            // listen to the received data event stream
+            socket.listen((List<int> event) {
+              print(utf8.decode(event));
             });
-            socket.on('event', (data) => print(data));
-            socket.onDisconnect((_) => print('disconnect'));
-            socket.on('fromServer', (_) => print(_));
+            // send hello
+            socket.add(utf8.encode('jeek send data from client'));
+            // wait 5 seconds
+            await Future.delayed(Duration(seconds: 60));
+
+            // .. and close the socket
+            socket.close();
           },
         ),
       ),
