@@ -14,7 +14,6 @@ import 'base/utils/EncryptUtil.dart';
 
 void main() async{
   try{
-    await Application.initSp();
     await EncryptUtil.initEncrypt();
   }catch(e){
 

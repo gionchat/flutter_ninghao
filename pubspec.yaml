@@ -43,7 +43,7 @@ dependencies:
   cached_network_image: ^2.4.1
   jpush_flutter: 0.6.1
   connectivity: ^2.0.2
-  flutter_screenutil: ^0.7.0
+  flutter_screenutil: ^4.0.2+1
   encrypt: ^4.1.0
   flutter_secure_storage: ^3.3.3
 dev_dependencies:
