@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_ninghao/base/utils/LogUtils.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 /**
@@ -12,9 +13,8 @@ import 'package:fluttertoast/fluttertoast.dart';
  * Description:
  */
 class HttpLite{
-
+  static final  String TAG = "HttpLite";
   static Dio _dio;
-
   static Dio createDio() {
     Dio dio = Dio(BaseOptions(
       connectTimeout: 15000,
@@ -35,7 +35,9 @@ class HttpLite{
       _dio = createDio();
     }
     Response<String> respnse = await _dio.get(url,queryParameters: params);
-    return jsonDecode(respnse.data);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
 
   }
 
@@ -49,7 +51,9 @@ class HttpLite{
       _dio = createDio();
     }
     Response<String> respnse = await _dio.post(url,queryParameters: params);
-    return jsonDecode(respnse.data);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
 
   }
 
@@ -63,7 +67,9 @@ class HttpLite{
       _dio = createDio();
     }
     Response<String> respnse = await _dio.put(url,queryParameters: params);
-    return jsonDecode(respnse.data);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
 
   }
 
@@ -77,7 +83,9 @@ class HttpLite{
       _dio = createDio();
     }
     Response<String> respnse = await _dio.delete(url,queryParameters: params);
-    return jsonDecode(respnse.data);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
 
   }
 
@@ -91,7 +99,9 @@ class HttpLite{
       _dio = createDio();
     }
     Response<String> respnse = await _dio.patch(url,queryParameters: params);
-    return jsonDecode(respnse.data);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
 
   }
 
