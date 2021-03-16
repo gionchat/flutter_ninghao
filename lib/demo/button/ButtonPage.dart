@@ -93,15 +93,18 @@ class _ButtonPageState extends State<StatefulWidget> {
               },
               icon: Icon(Icons.local_florist),
               label: Text("TextButton.icon")),
-          OutlineButton(
-              onPressed: () {
-                print("OutlineButton StadiumBorder");
-              },
-              splashColor: Colors.grey[200],
-              textColor: Colors.blue,
-              highlightedBorderColor: Colors.grey[200],
-              child: Text("OutlineButton StadiumBorder"),
-              shape: StadiumBorder()),
+          // OutlineButton(
+          //     onPressed: () {
+          //       print("OutlineButton StadiumBorder");
+          //     },
+          //     splashColor: Colors.grey[200],
+          //     textColor: Colors.blue,
+          //     highlightedBorderColor: Colors.grey[200],
+          //     child: Text("OutlineButton StadiumBorder"),
+          //     shape: StadiumBorder()),
+          IconButton(icon: Icon(Icons.add_circle_sharp), onPressed: (){
+            print("IconButton");
+          }),
           Row(
             children: [
               Expanded(
@@ -167,7 +170,7 @@ class _ButtonPageState extends State<StatefulWidget> {
                     setState(() {
                       dropdownValue = value;
                     });
-                  })
+                  }),
             ],
           )
         ],

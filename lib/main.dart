@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ninghao/ui/HelloWordPage.dart';
 import 'package:flutter_ninghao/ui/page/ColumnPage.dart';
@@ -18,7 +17,7 @@ void main() async{
   }catch(e){
 
   }
-  runApp(DevicePreview(builder: (context) => MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

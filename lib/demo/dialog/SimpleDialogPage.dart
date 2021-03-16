@@ -1,5 +1,3 @@
-import 'package:device_preview/device_preview.dart';
-
 /**
  * Copyright (C), 2015-2020, suntront
  * FileName: SimpleDialogPage
@@ -10,7 +8,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(DevicePreview(builder: (context) => SimpleDialogPage()));
+void main() => runApp(SimpleDialogPage());
 
 class SimpleDialogPage extends StatelessWidget {
   final SystemUiOverlayStyle _style =
