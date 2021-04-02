@@ -8,11 +8,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ninghao/base/utils/LogUtils.dart';
+import 'package:flutter_ninghao/db/table/User.dart';
+
 final String TAG = "SQLitePage";
+
 void main() => runApp(SQLitePage());
 
 class SQLitePage extends StatelessWidget {
-  final SystemUiOverlayStyle _style = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+  final SystemUiOverlayStyle _style =
+      SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(_style);
@@ -33,7 +38,7 @@ class SQLitePageStatefulWidget extends StatefulWidget {
 }
 
 class _SQLitePageState extends State<StatefulWidget> {
-
+  User user = User(phone: "16639439562",name: "jeek", age: 30, sex: 1);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -45,28 +50,53 @@ class _SQLitePageState extends State<StatefulWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "创建表");
-            },child: Text("创建表"),),
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "数据库升级");
-            },child: Text("数据库升级"),),
-
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "增");
-            },child: Text("增"),),
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "删");
-            },child: Text("删"),),
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "改");
-            },child: Text("改"),),
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "查");
-            },child: Text("查"),),
-            OutlineButton(onPressed: (){
-              LogUtils.i(TAG, "事务处理");
-            },child: Text("事务处理"),),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "数据库升级");
+              },
+              child: Text("数据库升级"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "增");
+                user.name = "jeek";
+                user.insert().then((value) => print("增： ${value}"));
+              },
+              child: Text("增"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "删");
+                user.delete(key: "name",value: "jeek").then((value)  => print("删： ${value}"));
+              },
+              child: Text("删"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "改");
+                user.name = "lijeek";
+                user.update(key:"name", value:"jeek").then((value) => print("改： ${value}"));
+              },
+              child: Text("改"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "查");
+                user.query(key: "name",value: "jeek").then((value) => print("查询： ${value.length}"));
+              },
+              child: Text("查"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                LogUtils.i(TAG, "事务处理");
+                // batch = db.batch();
+                // batch.insert('Test', {'name': 'item'});
+                // batch.update('Test', {'name': 'new_item'}, where: 'name = ?', whereArgs: ['item']);
+                // batch.delete('Test', where: 'name = ?', whereArgs: ['item']);
+                // results = await batch.commit();
+              },
+              child: Text("事务处理"),
+            ),
           ],
         ),
       ),

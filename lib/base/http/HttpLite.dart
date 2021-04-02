@@ -105,4 +105,58 @@ class HttpLite{
 
   }
 
+  static Future<Map<String,dynamic>> formData(String url,Map<String,dynamic> params) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    var formDataParams = FormData.fromMap(params);
+    Response<String> respnse = await _dio.post(url, data: formDataParams);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
+
+  }
+
+
+  static Future<Map<String,dynamic>> upload(String url,filePath) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    var formDataParams = FormData.fromMap({
+      'client': "android",
+      'file': await MultipartFile.fromFile(filePath, filename: 'upload.png'),
+    });
+    Response<String> respnse = await _dio.post(url, data: formDataParams);
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
+
+  }
+
+  static Future<Map<String,dynamic>> download(String url) async{
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (!(connectivityResult == ConnectivityResult.mobile || connectivityResult == ConnectivityResult.wifi)) {
+      Fluttertoast.showToast(msg: "网络未连接");
+      return null;
+    }
+    if(_dio == null) {
+      _dio = createDio();
+    }
+    Response<String> respnse = await _dio.download(url, './xx.html');
+    Map data = jsonDecode(respnse.data);
+    LogUtils.i(TAG, "url: ${url} | data => ${data.toString()}");
+    return data;
+
+  }
+
 }
