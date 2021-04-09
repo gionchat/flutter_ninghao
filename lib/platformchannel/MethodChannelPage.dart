@@ -36,8 +36,6 @@ class _MethodChannelPageState extends State<MethodChannelPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _streamSubscription.cancel();
-    _streamSubscription = null;
   }
   @override
   Widget build(BuildContext context) {

@@ -67,6 +67,14 @@ class _PlatformChannelPageState extends State<StatefulWidget> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _streamSubscription.cancel();
+    _streamSubscription = null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

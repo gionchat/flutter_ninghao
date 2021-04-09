@@ -30,5 +30,5 @@ flutter config --enable-linux-desktop
 
 空安全(nullsafe)迁移命令：
 ```
-flutter config --enable-linux-desktop
+dart migrate --apply-changes
 ```
